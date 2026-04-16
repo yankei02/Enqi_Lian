@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <title>CV — Enqi Lian</title>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1' />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #e8e4de;
+            --text: #2d2926;
+            --muted: #7a7068;
+            --border: #d0cbc4;
+            --block-bg: #f0ede8;
+        }
+
+        html, body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'EB Garamond', Georgia, serif;
+            font-size: 17px;
+            line-height: 1.7;
+            min-height: 100%;
+        }
+
+        /* ── Top nav ── */
+        .site-nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 22px 48px;
+            background-color: var(--bg);
+            z-index: 100;
+        }
+        .site-nav .name {
+            font-family: 'Playfair Display', serif;
+            font-size: 15px;
+            font-weight: 500;
+            letter-spacing: .04em;
+            text-decoration: none;
+            color: var(--text);
+        }
+        .site-nav .links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        .site-nav .links a {
+            font-family: 'EB Garamond', serif;
+            font-size: 14px;
+            color: var(--muted);
+            text-decoration: none;
+            letter-spacing: .04em;
+            transition: color 0.2s;
+        }
+        .site-nav .links a:hover { color: var(--text); }
+        .site-nav .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 13px !important;
+            color: var(--text) !important;
+            border: 1px solid var(--border);
+            padding: 5px 14px;
+            border-radius: 2px;
+            transition: border-color 0.2s;
+        }
+        .site-nav .download-btn:hover { border-color: var(--text) !important; color: var(--text) !important; }
+        .site-nav .download-btn svg { fill: var(--text); }
+
+        /* ── Page ── */
+        .cv-page {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 120px 40px 100px;
+        }
+
+        /* Name header */
+        .cv-header {
+            text-align: center;
+            margin-bottom: 72px;
+        }
+        .cv-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(40px, 6vw, 68px);
+            font-weight: 400;
+            letter-spacing: .02em;
+            margin-bottom: 16px;
+        }
+        .cv-header .contact {
+            font-size: 14px;
+            color: var(--muted);
+            font-style: italic;
+            line-height: 2;
+        }
+        .cv-header .contact a {
+            color: var(--muted);
+            text-decoration: none;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 1px;
+            transition: color 0.2s;
+        }
+        .cv-header .contact a:hover { color: var(--text); }
+
+        /* ── Blocks ── */
+        .cv-block {
+            background-color: var(--block-bg);
+            border-radius: 4px;
+            padding: 36px 40px;
+            margin-bottom: 16px;
+        }
+
+        .cv-block .block-label {
+            font-family: 'EB Garamond', serif;
+            font-size: 11px;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 28px;
+        }
+
+        /* Education */
+        .edu-school-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+        .edu-school {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            font-weight: 500;
+        }
+        .edu-location {
+            font-size: 14px;
+            font-style: italic;
+            color: var(--muted);
+        }
+        .edu-degree {
+            font-size: 16px;
+            font-style: italic;
+            margin-bottom: 4px;
+        }
+        .edu-dates {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 16px;
+        }
+        .edu-gpa {
+            font-size: 14px;
+            margin-bottom: 14px;
+        }
+        .edu-courses-label {
+            font-size: 13px;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+        .edu-courses {
+            list-style: none;
+            padding: 0;
+        }
+        .edu-courses li {
+            font-size: 15px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            line-height: 1.5;
+        }
+        .edu-courses li:last-child { border-bottom: none; }
+
+        /* Skills */
+        .skills-list {
+            list-style: none;
+            padding: 0;
+        }
+        .skills-list li {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            align-items: baseline;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 16px;
+        }
+        .skills-list li:first-child { padding-top: 0; }
+        .skills-list li:last-child { border-bottom: none; padding-bottom: 0; }
+        .skill-key {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            font-weight: 500;
+            min-width: 200px;
+        }
+        .skill-val {
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        /* Experience */
+        .exp-entry {
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .exp-entry:first-child { padding-top: 0; }
+        .exp-entry:last-child { border-bottom: none; padding-bottom: 0; }
+
+        .exp-top-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 2px;
+        }
+        .exp-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 18px;
+            font-weight: 400;
+        }
+        .exp-date {
+            font-size: 13px;
+            font-style: italic;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+        .exp-sub {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 2px;
+        }
+        .exp-role {
+            font-size: 14px;
+            font-style: italic;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+        .exp-entry ul {
+            padding-left: 18px;
+        }
+        .exp-entry ul li {
+            font-size: 15px;
+            line-height: 1.65;
+            margin-bottom: 2px;
+            color: var(--text);
+        }
+
+        /* Awards */
+        .awards-list {
+            list-style: none;
+            padding: 0;
+        }
+        .awards-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+        .awards-list li:first-child { padding-top: 0; }
+        .awards-list li:last-child { border-bottom: none; padding-bottom: 0; }
+        .award-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 17px;
+            font-weight: 400;
+        }
+        .award-prize {
+            font-size: 14px;
+            font-style: italic;
+            color: var(--muted);
+            white-space: nowrap;
+        }
+
+        @media (max-width: 600px) {
+            .site-nav { padding: 18px 24px; }
+            .cv-page { padding: 100px 24px 80px; }
+            .cv-block { padding: 28px 24px; }
+            .site-nav .links { gap: 18px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="site-nav">
+        <a class="name" href="index.html">Enqi Lian</a>
+        <div class="links">
+            <a href="index.html">Home</a>
+            <a class="download-btn" href="assets/CV_Enqi.pdf" download="CV_Enqi.pdf">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24">
+                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zm-8 2V5h2v6h1.17L12 13.17 9.83 11H11zm-6 7h14v2H5z"/>
+                </svg>
+                PDF
+            </a>
+        </div>
+    </nav>
+
+    <div class="cv-page">
+
+        <div class="cv-header">
+            <h1>Enqi Lian</h1>
+            <div class="contact">
+                (+86) 13526672937 &nbsp;·&nbsp;
+                <a href="mailto:enqilian619@gmail.com">enqilian619@gmail.com</a><br>
+                43 Baojia Street, Beijing, 100031, China
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div class="cv-block">
+            <div class="block-label">Education</div>
+            <div class="edu-school-row">
+                <span class="edu-school">Central Conservatory of Music</span>
+                <span class="edu-location">Beijing, China</span>
+            </div>
+            <div class="edu-degree">Bachelor of Arts in Composition and Compositional Theory (Electronic Music Composition)</div>
+            <div class="edu-dates">September 2020 – June 2025 (Expected)</div>
+            <div class="edu-gpa"><em>Cumulative GPA: 3.77</em></div>
+        </div>
+
+        <!-- Skills -->
+        <div class="cv-block">
+            <div class="block-label">Skills</div>
+            <ul class="skills-list">
+                <li>
+                    <span class="skill-key">Languages</span>
+                    <span class="skill-val">Chinese (native), English (professional)</span>
+                </li>
+                <li>
+                    <span class="skill-key">Music Production</span>
+                    <span class="skill-val">Cubase, Logic Pro, Ableton Live</span>
+                </li>
+                <li>
+                    <span class="skill-key">Creative Coding</span>
+                    <span class="skill-val">SuperCollider, MaxMSP, Processing</span>
+                </li>
+                <li>
+                    <span class="skill-key">Programming Languages &amp; Frameworks</span>
+                    <span class="skill-val">Python, Matlab, C++, JUCE, librosa</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Experience -->
+        <div class="cv-block">
+            <div class="block-label">Experience</div>
+
+            <div class="exp-entry">
+                <div class="exp-top-row">
+                    <span class="exp-title">Tiktok &amp; Xinhua News Agency — Colourful Moonlight Night of 2022</span>
+                    <span class="exp-date">Aug 2023</span>
+                </div>
+                <div class="exp-role">Music composer and arranger</div>
+                <ul>
+                    <li>Participated in the arrangement and composition of seven pieces of the program</li>
+                    <li>The program was viewed 110 million times</li>
+                </ul>
+            </div>
+
+            <div class="exp-entry">
+                <div class="exp-top-row">
+                    <span class="exp-title">Experimental Theatre, ICHTHYOLATRY to the sea</span>
+                    <span class="exp-date">Jun. 2023</span>
+                </div>
+                <div class="exp-role">Co-host</div>
+                <ul>
+                    <li>Shortlisted in Migratory Birds 300 of Aranya Theatre Festival (2022 &amp; 2023) and Wuzhen Theatre Festival</li>
+                    <li>Participated in the initiation and production of the project</li>
+                    <li>Led the team in THEATREPARADE &amp; SEASIDEBONFIRE</li>
+                    <li>Main character Wang Mantian fish lamp displayed at Barlotus, Aranya, in collaboration with Bar Lotus</li>
+                </ul>
+            </div>
+
+            <div class="exp-entry">
+                <div class="exp-top-row">
+                    <span class="exp-title">Public Experimental Music Experience, Float light</span>
+                    <span class="exp-date">Oct. 2023</span>
+                </div>
+                <div class="exp-sub">Beijing</div>
+                <div class="exp-role">Electronic music designer</div>
+                <ul>
+                    <li>Designed electronic music for a work in collaboration with M WOODS MUSEUM; performed live music combined with Ann Veronica Janssens's installation</li>
+                </ul>
+            </div>
+
+            <div class="exp-entry">
+                <div class="exp-top-row">
+                    <span class="exp-title">Ancient Architecture Music Season</span>
+                    <span class="exp-date">Nov. 2023</span>
+                </div>
+                <div class="exp-sub">Beijing</div>
+                <div class="exp-role">Composer</div>
+                <ul>
+                    <li>Work premiered at the Xiannongtan</li>
+                </ul>
+            </div>
+
+            <div class="exp-entry">
+                <div class="exp-top-row">
+                    <span class="exp-title">LLMScape: A Technolinguistic Exploration of Climate Narratives</span>
+                    <span class="exp-date">Mar. 2024</span>
+                </div>
+                <div class="exp-sub">Hosts: Gottfried Haider &amp; Jie Zhang</div>
+                <div class="exp-role">Music and sound designer</div>
+                <ul>
+                    <li>Designed all background sound and music for the installation</li>
+                    <li>The piece settled in the CAC project space in Shanghai</li>
+                </ul>
+            </div>
+
+            <div class="exp-entry">
+                <div class="exp-top-row">
+                    <span class="exp-title">Echo of the Ground — 2024 SANLIAN HUMANISTIC VERNACULAR SEASON</span>
+                    <span class="exp-date">Sept. 2024</span>
+                </div>
+                <div class="exp-role">Music composer and electronic music designer</div>
+                <ul>
+                    <li>Work premiered at QIAN TAI, unique Henan Land of Dramas</li>
+                    <li>Designed part of the electronic music for the concert</li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Awards -->
+        <div class="cv-block">
+            <div class="block-label">Awards</div>
+            <ul class="awards-list">
+                <li>
+                    <span class="award-name">International Youth Music Competitions, Atlanta, USA</span>
+                    <span class="award-prize">First prize</span>
+                </li>
+                <li>
+                    <span class="award-name">International Online JSFest Composition Competition</span>
+                    <span class="award-prize">First degree</span>
+                </li>
+                <li>
+                    <span class="award-name">Gramophone International Music Competition</span>
+                    <span class="award-prize">First prize</span>
+                </li>
+                <li>
+                    <span class="award-name">ROYALE Music Competition</span>
+                    <span class="award-prize">Silver prize</span>
+                </li>
+                <li>
+                    <span class="award-name">Canada Rocky Mountain Composition Competition</span>
+                    <span class="award-prize">Grand prize</span>
+                </li>
+                <li>
+                    <span class="award-name">4th Lugano International Music Competition</span>
+                    <span class="award-prize">First prize</span>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+</body>
+</html>
